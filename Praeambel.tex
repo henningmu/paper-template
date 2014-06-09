@@ -1,0 +1,220 @@
+%!TEX root = Paper.tex
+
+\documentclass[
+	pdftex,
+	fontsize=12pt,
+	paper=a4,
+	halfparskip,
+	twoside=false,
+	numbers=noenddot,		% No dot at the end of heading
+	bibliography=totoc,	% Bibliography into table of content
+	listof=totoc,				% list of figures, tables and list into table of content
+	titlepage=true,			% Separate titlepage, style with titlepage environment
+	headsepline=true,		% Head-line separator active
+	footsepline=true,		% Foot-line separator active
+	abstracton					% Abstract active
+]{scrreprt}
+
+
+% Character encoding is utf-8, umlauts can be entered directly
+\usepackage[utf8]{inputenc}
+
+% Character encoding output is T1 important for umlauts
+\usepackage[T1]{fontenc}
+
+% Defines the font
+\usepackage{lmodern}
+
+% Activate this for a german paper
+% \usepackage[ngerman]{babel}
+
+% Only one space in front of sentences (necessary when writing in English)
+\frenchspacing
+
+% Remove space above chapter
+\renewcommand*{\chapterheadstartvskip}{\vspace*{-\topskip}}
+
+% Disables the new count in every chapter
+\usepackage{chngcntr}
+\counterwithout{figure}{chapter}
+\counterwithout{table}{chapter}
+\counterwithout{footnote}{chapter}
+
+% Formats list of tables and figures as required
+\usepackage[titles]{tocloft}
+\renewcommand{\cftfigpresnum}{Fig. }
+\renewcommand{\cfttabpresnum}{Tab. }
+
+\renewcommand{\cftfigaftersnum}{:}
+\renewcommand{\cfttabaftersnum}{:}
+
+\setlength{\cftfignumwidth}{2.3cm}
+\setlength{\cfttabnumwidth}{2.3cm}
+
+\setlength{\cftfigindent}{0cm}
+\setlength{\cfttabindent}{0cm}
+
+\setcounter{tocdepth}{2}
+
+% Easier working with captions of figures and tables 
+\usepackage[justification=centering, tableposition=top]{caption}
+\usepackage{subcaption}
+\captionsetup{font={small}}
+
+% \addto\captionsngerman{
+% 	\renewcommand{\figurename}{Fig.}
+% 	\renewcommand{\tablename}{Tab.}
+% } 
+
+% Use Colours
+\usepackage[table,usenames,dvipsnames]{xcolor}
+
+% Load all constants (including colours)
+\input{Constants}
+
+% Wrap figures with text
+\usepackage{wrapfig}
+
+% Force position of figures
+\usepackage{float}
+
+% Use math environments
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{relsize}
+
+
+% Use comma as delimiter
+\usepackage{icomma}
+
+% Use to-dos
+\usepackage{todonotes}
+
+% Use square brackets for footnotes (both in text and footer)
+\usepackage{scrextend}
+\deffootnotemark{\textsuperscript{[\thefootnotemark]}}
+\deffootnote{2em}{1.6em}{[\thefootnotemark]\enskip}
+
+% Choose quotes depending on language
+\usepackage[babel=true, german=quotes]{csquotes}
+
+% Settings for Source code listings
+\usepackage{listings}
+\renewcommand{\lstlistlistingname}{List of Listings}
+\renewcommand{\lstlistingname}{Listing}
+\lstset{
+	backgroundcolor=\color{base3},
+	captionpos=b,
+	escapechar=!,
+	extendedchars=true,
+	numberfirstline=false,
+	xleftmargin=4ex,
+	numberbychapter=false
+	basicstyle=\color{base00}\scriptsize\ttfamily,
+	showstringspaces=false,
+	showspaces=false,
+	numbers=left,
+	numberstyle=\tiny,
+	numbersep=10pt,
+	breaklines=true,
+	showtabs=false,
+	captionpos=b,
+	frame=l,
+	framerule=4pt,
+	rulecolor=\color{base2},
+	aboveskip = 1em,
+	belowskip = 0em,
+}
+
+% Use BibTeX / LaTeX Symbol
+\usepackage{texnames}
+
+% Other (font) symbols
+\usepackage{pifont}
+
+% Everything concerning tables and special cells
+\usepackage{slashbox}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{hhline}
+
+% Use hyphenation in true type 
+\usepackage[htt]{hyphenat}
+
+% More settings in enumerations
+\usepackage{enumitem}
+
+% List of abbreviations 
+\usepackage[printonlyused]{acronym}
+\renewcommand*\bflabel[1]{\textbf{\normalsize{#1}}\hfill}
+
+% Use pdf pages directly (as figures for example)
+\usepackage{pdfpages}
+
+% Adapt header and footer
+\usepackage[plainfootsepline, plainheadsepline, headsepline, footsepline, automark]{scrpage2}
+\setheadsepline{0.1pt}
+\setfootsepline{0.1pt}
+% delete and activate header and footer to apply settings
+\clearscrheadfoot
+\pagestyle{scrheadings}
+
+% Left header
+\ihead[\mytitle]{\mytitle}
+% Left footer
+\ifoot[\myauthor]{\myauthor}
+% Right footer
+\ofoot[\pagemark]{\pagemark}
+
+% Use figures from directory
+\usepackage{graphicx}
+\graphicspath{{Figures/}}
+
+% Define margins
+\usepackage[left=3.5cm, right=2.5cm, top=2.5cm, bottom=3cm]{geometry}
+
+% Linespacing
+\usepackage{setspace}
+\onehalfspacing
+% Double line spacing for print-out proof-reading
+% \doublespacing
+
+% Bibliography
+\usepackage[backend=bibtex, maxbibnames=4, style=alphabetic]{biblatex}
+\bibliography{Literature/Literature.bib, Literature/rfc.bib}
+% Break URLs in bibliography
+\setcounter{biburlnumpenalty}{100}
+\setcounter{biburlucpenalty}{100}
+\setcounter{biburllcpenalty}{100}
+
+% Glossary
+\usepackage[toc,nonumberlist]{glossaries}
+
+% Use title as reference
+\usepackage{titleref}
+
+% Use currencies
+\usepackage{textcomp}
+
+
+% Settings for pdf and hyper-links inside
+\usepackage[breaklinks]{hyperref}
+\hypersetup{
+	pdfauthor = {\myauthor},
+	pdftitle = {\mytitle},
+	pdfsubject = {\type},
+	pdfkeywords = {},
+	pdfstartview = {Fit},
+	colorlinks = {true},
+	breaklinks = {true},
+	bookmarksopen = {true},
+	linkcolor = {black},
+	citecolor = {black},
+	urlcolor = {black}
+}
+
+% Settings for penalties when breaking words
+\clubpenalty = 10000
+\widowpenalty = 10000
+\displaywidowpenalty = 10000

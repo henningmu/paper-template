@@ -1,0 +1,73 @@
+\input{Praeambel}
+
+\begin{document}
+	% Title page
+	\include{Content/Titlepage}
+	
+	% Roman numerics in caps beginning with 2 
+	\pagenumbering{Roman}
+	\setcounter{page}{2}
+	
+	% Non-disclosure statement (only when needed)
+	\include{Content/NonDisclosure}
+
+	% Declaration of Authorship
+	\include{Content/Declaration}
+
+	% Abstract
+	\include{Content/Abstract}
+	
+	% Inhaltsverzeichnis
+	\tableofcontents
+	\pagebreak
+	
+	% Abbreviations
+	\addchap{Abbreviations}
+	\input{Content/Abbreviations}
+	\pagebreak
+
+	% List of figures
+	\listoffigures
+	\pagebreak
+	
+	% List of tables
+	\listoftables
+	\pagebreak
+
+	% List of listings
+	\lstlistoflistings
+	\pagebreak
+	
+	% List of to-dos
+	\listoftodos
+	\pagebreak
+
+	% Use Arabic numerics
+	\clearpage
+	\pagenumbering{arabic}
+		
+	% Change left header to current chapter
+	\ihead[\headmark]{\headmark}		
+	
+	% Content of the paper
+	\include{Content/Chapters/01_Introduction}
+	\include{Content/Chapters/02_Foundations}
+	\include{Content/Chapters/03_Analysis}
+	\include{Content/Chapters/04_Implementation}
+	\include{Content/Chapters/05_Validation}
+	\include{Content/Chapters/06_Conclusion}
+	\clearpage
+
+	% Change left header to title
+	\ihead[\mytitle]{\mytitle}	
+	
+	% Appendix
+	\appendix
+	\input{Content/Chapters/A_Appendix}
+	
+	% Bibliography
+	\printbibliography[title={Literatur}]
+	\clearpage
+	\clearpage
+
+\end{document}
